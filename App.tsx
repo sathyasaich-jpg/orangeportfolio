@@ -1,16 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Hobbies from './components/Hobbies';
-import Contact from './components/Contact';
-import ProjectDetail from './components/ProjectDetail';
-import DesignAssistant from './components/DesignAssistant';
-import { Theme, Project } from './types';
-import { PROJECTS } from './constants';
+import Header from './components/Header.tsx';
+import Hero from './components/Hero.tsx';
+import About from './components/About.tsx';
+import Skills from './components/Skills.tsx';
+import Projects from './components/Projects.tsx';
+import Hobbies from './components/Hobbies.tsx';
+import Contact from './components/Contact.tsx';
+import ProjectDetail from './components/ProjectDetail.tsx';
+import DesignAssistant from './components/DesignAssistant.tsx';
+import { Theme } from './types.ts';
+import { PROJECTS } from './constants.tsx';
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState<Theme>(Theme.LIGHT);
@@ -25,7 +25,6 @@ const App: React.FC = () => {
     }
   }, [theme]);
 
-  // Scroll to top when project is selected or deselected
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [selectedProjectId]);

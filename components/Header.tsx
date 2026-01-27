@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Theme } from '../types';
+import { Theme } from '../types.ts';
 
 interface HeaderProps {
   theme: Theme;
@@ -19,7 +19,6 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, onHomeClick }) => {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (onHomeClick) {
       onHomeClick();
-      // Wait for re-render before scrolling if we were on a project page
       setTimeout(() => {
         const targetId = href.replace('#', '');
         const element = document.getElementById(targetId);
@@ -37,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, onHomeClick }) => {
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
-      const offset = 80; // Account for sticky header
+      const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -58,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, onHomeClick }) => {
             onClick={onHomeClick}
             className="font-blocky text-2xl tracking-tighter text-brand-red transition-transform hover:scale-105"
           >
-            SS<span className="text-zinc-900 dark:text-white"></span>
+            SATHYA<span className="text-zinc-900 dark:text-white">SAI</span>
           </button>
         </div>
 

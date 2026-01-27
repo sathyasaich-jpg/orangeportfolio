@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PROJECTS } from '../constants';
+import { PROJECTS } from '../constants.tsx';
 
 interface ProjectsProps {
   onProjectSelect?: (id: string) => void;
@@ -25,6 +25,7 @@ const Projects: React.FC<ProjectsProps> = ({ onProjectSelect }) => {
               <img 
                 src={project.imageUrl} 
                 alt={project.title} 
+                loading="lazy"
                 className="w-full h-full object-cover grayscale brightness-110 contrast-125 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
               />
               <div className="absolute top-0 right-0 p-2">

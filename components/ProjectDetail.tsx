@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Project } from '../types';
-import { PROJECTS } from '../constants';
-import Lightbox from './Lightbox';
+import { Project } from '../types.ts';
+import { PROJECTS } from '../constants.tsx';
+import Lightbox from './Lightbox.tsx';
 
 interface ProjectDetailProps {
   project: Project;
@@ -21,12 +21,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
 
   return (
     <div className="py-12 md:py-16 animate-in fade-in slide-in-from-bottom-6 duration-700 max-w-5xl mx-auto">
-      {/* Lightbox for Zoom */}
       {activeImage && (
         <Lightbox imageUrl={activeImage} onClose={() => setActiveImage(null)} />
       )}
 
-      {/* Top Breadcrumb & Nav */}
       <div className="mb-16 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-6">
         <button 
           onClick={onBack}
@@ -42,7 +40,6 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
         </div>
       </div>
 
-      {/* Title Section */}
       <div className="space-y-12 mb-20">
         <div className="space-y-6">
           <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-blocky leading-[0.85] tracking-tighter uppercase m-0 p-0 text-zinc-900 dark:text-white">
@@ -53,7 +50,6 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
           </p>
         </div>
 
-        {/* Main Hero Image */}
         <div 
           className="relative group cursor-zoom-in overflow-hidden rounded-2xl shadow-2xl" 
           onClick={() => setActiveImage(project.imageUrl)}
@@ -61,6 +57,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
           <img 
             src={project.imageUrl} 
             alt={project.title} 
+            loading="eager"
             className="w-full h-full object-cover aspect-video grayscale-20 group-hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all"></div>
@@ -70,9 +67,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
         </div>
       </div>
 
-      {/* Brief & Context Grid (Reference Structure) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-32 items-start">
-        {/* Project Metadata */}
         <div className="lg:col-span-4 space-y-10 bg-zinc-50 dark:bg-zinc-900/50 p-8 rounded-xl border border-zinc-100 dark:border-zinc-800">
           <div className="space-y-8">
             <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">Project Brief</h4>
@@ -97,7 +92,6 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
           </div>
         </div>
 
-        {/* Narrative Description */}
         <div className="lg:col-span-8 space-y-16">
           <div className="space-y-4">
             <h3 className="text-3xl font-blocky uppercase tracking-tight text-zinc-900 dark:text-white">The Concept</h3>
@@ -117,7 +111,6 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
         </div>
       </div>
 
-      {/* Process Gallery Section */}
       <div className="space-y-16 mb-40">
         <div className="flex items-end justify-between border-b-2 border-zinc-200 dark:border-zinc-800 pb-4">
           <h2 className="text-4xl md:text-5xl font-blocky tracking-tighter uppercase">Process Gallery</h2>
@@ -134,6 +127,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
                 <img 
                   src={img.url} 
                   alt={`Process Step ${i + 1}`} 
+                  loading="lazy"
                   className="w-full h-full object-cover aspect-[4/3] grayscale brightness-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-brand-red/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -146,7 +140,6 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
         </div>
       </div>
 
-      {/* Footer: Explore Other Works */}
       <div className="pt-24 border-t border-zinc-200 dark:border-zinc-800">
         <div className="flex justify-between items-center mb-16">
           <h2 className="text-5xl md:text-7xl font-blocky tracking-tighter uppercase">Next Works</h2>
@@ -164,7 +157,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
               className="group text-left space-y-4"
             >
               <div className="aspect-[4/3] overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-all">
-                <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover grayscale brightness-90 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-110" />
+                <img src={p.imageUrl} alt={p.title} loading="lazy" className="w-full h-full object-cover grayscale brightness-90 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-110" />
               </div>
               <h4 className="font-blocky text-lg uppercase group-hover:text-brand-red transition-colors">{p.title}</h4>
               <p className="text-[8px] font-black uppercase tracking-[0.2em] opacity-40">{p.category}</p>
