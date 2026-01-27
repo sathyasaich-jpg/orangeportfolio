@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
     title: 'Illustrated Narrative Series',
     category: 'Illustration',
     description: 'A series of 12 illustrations exploring the intersection of traditional folklore and modern technology.',
-    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'images/AdobeStock_162858127.png',
     tags: ['Digital Art', 'Storyboarding', 'Procreate'],
     role: 'Digital Illustrator',
     timeline: '8 Weeks',
