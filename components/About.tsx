@@ -30,7 +30,7 @@ const About: React.FC = () => {
 
           <div className="bg-white/50 dark:bg-zinc-900/50 p-6 md:p-8 paper-sheet border-t-8 border-brand-orange -rotate-1">
             <p className="text-lg md:text-xl font-light leading-snug opacity-90 text-zinc-800 dark:text-zinc-200">
-              Sathya Sai is a multi-disciplinary designer currently based in Bangalore. His practice is rooted in the belief that design should be <span className="italic font-serif font-black text-brand-red uppercase">felt</span> as much as it is seen.
+              Sathya Sai is a multi-disciplinary designer currently based in Bangalore. Her practice is rooted in the belief that design should be <span className="italic font-serif font-black text-brand-red uppercase">felt</span> as much as it is seen.
             </p>
             <p className="mt-4 text-lg font-light leading-snug opacity-80 text-zinc-800 dark:text-zinc-200">
               Bridging complexity and clarity through narrative-driven design thinking. Specializing in visual metaphors, editorial systems, and tactile digital experiences that challenge conventional interfaces.

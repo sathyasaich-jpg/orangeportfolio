@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, onHomeClick }) => {
             onClick={onHomeClick}
             className="font-blocky text-2xl tracking-tighter text-brand-red transition-transform hover:scale-105"
           >
-            SATHYA<span className="text-zinc-900 dark:text-white">SAI</span>
+            SS<span className="text-zinc-900 dark:text-white"></span>
           </button>
         </div>
 
