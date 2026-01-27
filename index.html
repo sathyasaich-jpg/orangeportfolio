@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sathya Sai | Communication Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;700;900&family=Archivo+Black&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                blue: '#4A5DFF',
+                orange: '#f57f4f',
+                red: '#ff4d00',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Instrument Serif', 'serif'],
+              blocky: ['Archivo Black', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #efefef;
+      }
+      .scrapbook-bg {
+        background-image: url("https://www.transparenttextures.com/patterns/crumpled-paper.png");
+        background-color: #f5f5f5;
+      }
+      .dark .scrapbook-bg {
+        background-color: #111;
+        background-image: url("https://www.transparenttextures.com/patterns/dark-matter.png");
+      }
+      .paper-sheet {
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        position: relative;
+        transition: transform 0.3s ease;
+      }
+      .paper-sheet:hover {
+        transform: translateY(-2px) rotate(0deg);
+      }
+      .tape {
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(2px);
+        width: 100px;
+        height: 25px;
+        position: absolute;
+        z-index: 20;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      }
+      .tape-top { top: -12px; left: 50%; transform: translateX(-50%) rotate(-1deg); }
+      .tape-corner { top: -10px; right: -20px; transform: rotate(45deg); }
+      
+      /* Offset for sticky header so anchor links don't hide section titles */
+      section {
+        scroll-margin-top: 5rem;
+      }
+
+      /* Fix for cutting off name */
+      h1 {
+        line-height: 0.85;
+        padding-top: 0.1em;
+        padding-bottom: 0.1em;
+      }
+
+      .clip-paper {
+        clip-path: polygon(2% 0%, 98% 1%, 100% 98%, 1% 100%);
+      }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react": "https://esm.sh/react@^19.2.4",
+        "@google/genai": "https://esm.sh/@google/genai@^1.38.0"
+      }
+    }
+    </script>
+  </head>
+  <body class="scrapbook-bg">
+    <div id="root"></div>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "Sathya Sai Portfolio",
+  "description": "A clean, modern, and scrapbook-inspired communication design portfolio for Sathya Sai, featuring project showcases, design thinking, and a Gemini-powered design assistant.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
