@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Project } from '../types';
 import { PROJECTS } from '../constants';
 import Lightbox from './Lightbox';
@@ -13,76 +13,83 @@ interface ProjectDetailProps {
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjectSelect }) => {
   const [activeImage, setActiveImage] = useState<string | null>(null);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [project.id]);
+
   const otherProjects = PROJECTS.filter(p => p.id !== project.id);
 
   return (
-    <div className="py-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      {/* Lightbox */}
+    <div className="py-12 md:py-16 animate-in fade-in slide-in-from-bottom-6 duration-700 max-w-5xl mx-auto">
+      {/* Lightbox for Zoom */}
       {activeImage && (
         <Lightbox imageUrl={activeImage} onClose={() => setActiveImage(null)} />
       )}
 
-      {/* Navigation */}
-      <div className="mb-12 flex items-center justify-between">
+      {/* Top Breadcrumb & Nav */}
+      <div className="mb-16 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-6">
         <button 
           onClick={onBack}
-          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 transition-all hover:-translate-x-2"
+          className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-brand-red transition-all group"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="m15 18-6-6 6-6"/></svg>
+          <svg className="transition-transform group-hover:-translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="m15 18-6-6 6-6"/></svg>
           Back to Portfolio
         </button>
-        <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-red opacity-30">
-          Case Study / 0{project.id}
-        </span>
+        <div className="flex items-center gap-4">
+          <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-red opacity-50">
+            {project.category.split(' / ')[0]}
+          </span>
+        </div>
       </div>
 
-      {/* Hero Section */}
-      <div className="space-y-8 mb-20">
-        <div className="space-y-4">
-          <span className="text-[10px] font-black text-brand-blue tracking-widest uppercase">{project.category}</span>
-          <h1 className="text-6xl md:text-[8rem] font-blocky leading-none tracking-tighter uppercase m-0 p-0 overflow-visible">
-            {project.title.split(' ').map((word, i) => (
-              <span key={i} className={i % 2 !== 0 ? 'text-brand-red' : ''}>{word} </span>
-            ))}
+      {/* Title Section */}
+      <div className="space-y-12 mb-20">
+        <div className="space-y-6">
+          <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-blocky leading-[0.85] tracking-tighter uppercase m-0 p-0 text-zinc-900 dark:text-white">
+            {project.title}
           </h1>
-          <p className="text-xl md:text-2xl font-light leading-relaxed max-w-3xl opacity-80">
+          <p className="text-xl md:text-2xl font-light leading-relaxed max-w-2xl opacity-70 border-l-4 border-brand-red pl-6 italic font-serif">
             {project.description}
           </p>
         </div>
 
-        <div className="relative group cursor-zoom-in" onClick={() => setActiveImage(project.imageUrl)}>
-          <div className="aspect-video overflow-hidden paper-sheet -rotate-1 shadow-2xl">
-            <img 
-              src={project.imageUrl} 
-              alt={project.title} 
-              className="w-full h-full object-cover grayscale-50 group-hover:grayscale-0 transition-all duration-700"
-            />
-          </div>
-          <div className="absolute bottom-4 right-4 bg-brand-red text-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="m21 21-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+        {/* Main Hero Image */}
+        <div 
+          className="relative group cursor-zoom-in overflow-hidden rounded-2xl shadow-2xl" 
+          onClick={() => setActiveImage(project.imageUrl)}
+        >
+          <img 
+            src={project.imageUrl} 
+            alt={project.title} 
+            className="w-full h-full object-cover aspect-video grayscale-20 group-hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all"></div>
+          <div className="absolute top-6 right-6 bg-white/20 backdrop-blur-md p-2 rounded-full border border-white/30 opacity-0 group-hover:opacity-100 transition-opacity">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5"><path d="m21 21-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
           </div>
         </div>
       </div>
 
-      {/* Brief and Concept */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32">
-        <div className="lg:col-span-4 space-y-12">
-          <div className="space-y-6">
-            <h4 className="text-[10px] font-black uppercase tracking-widest opacity-30 border-b border-zinc-200 dark:border-zinc-800 pb-2">Project Brief</h4>
-            <div className="space-y-4">
+      {/* Brief & Context Grid (Reference Structure) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-32 items-start">
+        {/* Project Metadata */}
+        <div className="lg:col-span-4 space-y-10 bg-zinc-50 dark:bg-zinc-900/50 p-8 rounded-xl border border-zinc-100 dark:border-zinc-800">
+          <div className="space-y-8">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">Project Brief</h4>
+            <div className="space-y-6">
               <div>
-                <p className="text-[9px] font-black opacity-30 uppercase tracking-widest mb-1">Role</p>
-                <p className="font-blocky text-sm uppercase">{project.role || 'Communication Designer'}</p>
+                <p className="text-[8px] font-black text-brand-red uppercase tracking-widest mb-1 opacity-60">ROLE</p>
+                <p className="font-blocky text-base uppercase leading-tight">{project.role || 'Designer'}</p>
               </div>
               <div>
-                <p className="text-[9px] font-black opacity-30 uppercase tracking-widest mb-1">Timeline</p>
-                <p className="font-blocky text-sm uppercase">{project.timeline || '8 Weeks'}</p>
+                <p className="text-[8px] font-black text-brand-red uppercase tracking-widest mb-1 opacity-60">TIMELINE</p>
+                <p className="font-blocky text-base uppercase leading-tight">{project.timeline || '4 Weeks'}</p>
               </div>
               <div>
-                <p className="text-[9px] font-black opacity-30 uppercase tracking-widest mb-1">Tools</p>
-                <div className="flex flex-wrap gap-2 mt-1">
-                  {(project.tools || ['Figma', 'InDesign']).map(tool => (
-                    <span key={tool} className="px-2 py-0.5 bg-zinc-100 dark:bg-zinc-800 text-[8px] font-black uppercase tracking-widest">{tool}</span>
+                <p className="text-[8px] font-black text-brand-red uppercase tracking-widest mb-1 opacity-60">TOOLS</p>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {(project.tools || []).map(tool => (
+                    <span key={tool} className="px-2 py-1 bg-white dark:bg-zinc-800 text-[9px] font-black uppercase tracking-widest border border-zinc-200 dark:border-zinc-700">{tool}</span>
                   ))}
                 </div>
               </div>
@@ -90,17 +97,18 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
           </div>
         </div>
 
+        {/* Narrative Description */}
         <div className="lg:col-span-8 space-y-16">
           <div className="space-y-4">
-            <h3 className="text-3xl font-blocky uppercase tracking-tight">The Concept</h3>
+            <h3 className="text-3xl font-blocky uppercase tracking-tight text-zinc-900 dark:text-white">The Concept</h3>
             <p className="text-lg font-light leading-relaxed opacity-70">
-              {project.concept || 'Minimalism is not just about removing elements; it\'s about the precision of what remains. We used foundational design principles to create a system that resonates with contemporary users.'}
+              {project.concept}
             </p>
           </div>
 
           {project.gridDesc && (
             <div className="space-y-4">
-              <h3 className="text-3xl font-blocky uppercase tracking-tight">The Grid</h3>
+              <h3 className="text-3xl font-blocky uppercase tracking-tight text-zinc-900 dark:text-white">The Grid</h3>
               <p className="text-lg font-light leading-relaxed opacity-70">
                 {project.gridDesc}
               </p>
@@ -109,30 +117,28 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
         </div>
       </div>
 
-      {/* Process Gallery */}
-      <div className="space-y-12 mb-40">
-        <div className="flex items-end justify-between border-b-4 border-zinc-900 dark:border-white pb-4">
-          <h2 className="text-4xl md:text-6xl font-blocky tracking-tighter uppercase">Process Gallery</h2>
-          <span className="text-[10px] font-black opacity-30 uppercase tracking-widest">Visual Fragments</span>
+      {/* Process Gallery Section */}
+      <div className="space-y-16 mb-40">
+        <div className="flex items-end justify-between border-b-2 border-zinc-200 dark:border-zinc-800 pb-4">
+          <h2 className="text-4xl md:text-5xl font-blocky tracking-tighter uppercase">Process Gallery</h2>
+          <span className="text-[10px] font-black opacity-30 uppercase tracking-[0.4em]">Visual Artifacts</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {(project.processGallery || []).map((img, i) => (
-            <div key={i} className="space-y-4">
+            <div key={i} className="space-y-6 group">
               <div 
-                className="group relative cursor-zoom-in paper-sheet bg-white dark:bg-zinc-800 p-2 shadow-xl hover:rotate-1 transition-transform"
+                className="relative overflow-hidden rounded-xl shadow-lg cursor-zoom-in bg-zinc-100 dark:bg-zinc-800"
                 onClick={() => setActiveImage(img.url)}
               >
-                <div className="aspect-square overflow-hidden bg-zinc-100 dark:bg-zinc-950">
-                  <img 
-                    src={img.url} 
-                    alt={img.caption} 
-                    className="w-full h-full object-cover grayscale brightness-110 hover:grayscale-0 transition-all duration-700"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-brand-red/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <img 
+                  src={img.url} 
+                  alt={`Process Step ${i + 1}`} 
+                  className="w-full h-full object-cover aspect-[4/3] grayscale brightness-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                />
+                <div className="absolute inset-0 bg-brand-red/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
-              <p className="text-xs font-light italic opacity-60 leading-relaxed max-w-sm">
+              <p className="text-xs font-serif italic opacity-60 leading-relaxed max-w-md border-l-2 border-zinc-200 dark:border-zinc-800 pl-4">
                 {img.caption}
               </p>
             </div>
@@ -140,22 +146,28 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onProjec
         </div>
       </div>
 
-      {/* Explore Other Works */}
-      <div className="pt-24 border-t border-zinc-200 dark:border-zinc-800 text-center">
-        <span className="text-[10px] font-black opacity-30 uppercase tracking-[0.4em] mb-4 block">Want to see more?</span>
-        <h2 className="text-5xl md:text-7xl font-blocky tracking-tighter uppercase mb-16">Explore Other Works</h2>
+      {/* Footer: Explore Other Works */}
+      <div className="pt-24 border-t border-zinc-200 dark:border-zinc-800">
+        <div className="flex justify-between items-center mb-16">
+          <h2 className="text-5xl md:text-7xl font-blocky tracking-tighter uppercase">Next Works</h2>
+          <span className="text-[10px] font-black text-brand-red uppercase tracking-[0.5em] animate-pulse">Scroll down</span>
+        </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-left">
           {otherProjects.slice(0, 3).map(p => (
             <button 
               key={p.id}
-              onClick={() => onProjectSelect(p.id)}
-              className="group space-y-4 text-left"
+              onClick={() => {
+                 onProjectSelect(p.id);
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="group text-left space-y-4"
             >
-              <div className="aspect-[4/3] overflow-hidden paper-sheet rotate-1">
-                <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110" />
+              <div className="aspect-[4/3] overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-all">
+                <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover grayscale brightness-90 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-110" />
               </div>
               <h4 className="font-blocky text-lg uppercase group-hover:text-brand-red transition-colors">{p.title}</h4>
+              <p className="text-[8px] font-black uppercase tracking-[0.2em] opacity-40">{p.category}</p>
             </button>
           ))}
         </div>
