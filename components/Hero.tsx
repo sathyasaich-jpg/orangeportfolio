@@ -66,7 +66,7 @@ const Hero: React.FC = () => {
           <div className="paper-sheet p-3 bg-white dark:bg-zinc-800 -rotate-3 shadow-2xl">
             <div className="relative overflow-hidden aspect-[3/4]">
               <img 
-                src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&q=80&w=1000" 
+                src="https://i.ibb.co/LXtq45ks/my-notion-face-transparent.png" 
                 alt="Editorial Texture" 
                 className="w-full h-full object-cover grayscale brightness-110 contrast-125"
               />
