@@ -23,8 +23,7 @@ export const PROJECTS: Project[] = [
     processGallery: [
       { url: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800', caption: 'Initial typeface explorations focusing on legibility and geometric balance across Devanagari and Latin scripts.' },
       { url: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=800', caption: 'Applying the grid system to complex monochrome layouts to test visual weight.' },
-      { url: 'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=800', caption: 'Color theory application for high-contrast digital displays, ensuring accessibility standards.' },
-      { url: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800', caption: 'Final motion studies for interactive web components using Lottie and After Effects.' }
+    
     ]
   },
   {
@@ -75,8 +74,8 @@ export const PROJECTS: Project[] = [
     concept: 'Minimalism isn\'t just about removing elements; it\'s about the precision of what remains. This project used foundational Swiss principles to create a system that resonates with contemporary architectural students.',
     gridDesc: 'A strict baseline grid was established to ensure perfect typographic alignment across multiple spreads, even when using radical asymmetrical alignments.',
     processGallery: [
-      { url: 'https://images.unsplash.com/photo-1586075010633-247fe1bd6e1d?auto=format&fit=crop&q=80&w=800', caption: 'Type pairing experiments with modern serif and sans-serif fonts to create a dialogue between old and new.' },
-      { url: 'https://images.unsplash.com/photo-1553028495-1a03e1e07583?auto=format&fit=crop&q=80&w=800', caption: 'Exploring white space as a structural element rather than a void in architectural spreads.' }
+      { url: 'https://i.ibb.co/BV5KsDzG/Whats-App-Image-2025-10-13-at-14-22-48.jpg', caption: 'Type pairing experiments with modern serif and sans-serif fonts to create a dialogue between old and new.' },
+      { url: 'https://i.ibb.co/twsqFNW5/Whats-App-Image-2025-10-13-at-14-22-49-1.jpg', caption: 'Exploring white space as a structural element rather than a void in architectural spreads.' }
     ]
   }
 ];
