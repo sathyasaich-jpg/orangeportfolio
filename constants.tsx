@@ -1,6 +1,12 @@
 
 import { Project, Skill } from './types';
 
+export const SOCIAL_LINKS = {
+  email: 'sathyay.sai@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/sathya-sai-14951330b',
+  behance: 'https://www.behance.net/sathyasai3'
+};
+
 export const PROJECTS: Project[] = [
   {
     id: '1',

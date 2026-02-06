@@ -3,9 +3,9 @@ import React from 'react';
 
 const Hobbies: React.FC = () => {
   const hobbies = [
-    { title: "Reading", desc: "Theoretical texts on semiotics and Bauhaus history.", id: "01", img: "https://picsum.photos/seed/reading2/600/600?grayscale" },
-    { title: "Painting", desc: "Exploring color vibration through abstract expression.", id: "02", img: "https://picsum.photos/seed/paint2/600/600?grayscale" },
-    { title: "Curation", desc: "Finding hidden patterns in everyday urban environments.", id: "03", img: "https://picsum.photos/seed/city2/600/600?grayscale" }
+    { title: "Reading", desc: "Reading fiction is how I unwind and escape into other worlds.", id: "01", img: "https://i.ibb.co/hRwsDk48/dece6d5fe9e70fe1d48b6ff5f133db77.jpg" },
+    { title: "Painting", desc: "Exploring color vibration through abstract expression.", id: "02", img: "https://i.ibb.co/DgRd8c2Z/ee5f8e996596cdb363cd3a57496c6833.jpg" },
+    { title: "Curation", desc: "Finding hidden patterns in everyday urban environments.", id: "03", img: "https://picsum.photos/seed/city2/600/600?" }
   ];
 
   return (

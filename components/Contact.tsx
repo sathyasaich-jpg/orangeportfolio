@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { SOCIAL_LINKS } from '../constants.tsx';
 
 const Contact: React.FC = () => {
   return (
@@ -12,22 +13,38 @@ const Contact: React.FC = () => {
               START<br /><span className="text-brand-red">NOW.</span>
             </h2>
             <div className="pt-4 space-y-6">
-              <p className="text-xl font-light opacity-60 max-w-sm">
-                Available for internships and design collaborations in 2024.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6">
+              <div className="space-y-2">
+                <p className="text-xl font-light opacity-60 max-w-sm">
+                  Available for internships and design collaborations in 2026.
+                </p>
+                <p className="text-sm font-black text-brand-orange tracking-widest uppercase opacity-80">
+                  {SOCIAL_LINKS.email}
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-6 items-center">
                 <a 
-                  href="mailto:hello@sathyasai.design" 
-                  className="bg-brand-red text-white px-8 py-4 text-xs font-black tracking-widest hover:bg-brand-orange transition-all shadow-xl text-center"
+                  href={`mailto:${SOCIAL_LINKS.email}`} 
+                  className="bg-brand-red text-white px-8 py-4 text-xs font-black tracking-widest hover:bg-brand-orange transition-all shadow-xl text-center w-full sm:w-auto"
                 >
-                  SAY_HELLO.SATHYA
+                  SAY HELLO
                 </a>
                 <div className="flex items-center gap-6">
-                  {['LI', 'BE', 'IG'].map(link => (
-                    <a key={link} href="#" className="text-xs font-black opacity-30 hover:opacity-100 transition-opacity uppercase">
-                      {link}
-                    </a>
-                  ))}
+                  <a 
+                    href={SOCIAL_LINKS.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-xs font-black opacity-30 hover:opacity-100 transition-opacity uppercase"
+                  >
+                    LI
+                  </a>
+                  <a 
+                    href={SOCIAL_LINKS.behance} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-xs font-black opacity-30 hover:opacity-100 transition-opacity uppercase"
+                  >
+                    BE
+                  </a>
                 </div>
               </div>
             </div>
